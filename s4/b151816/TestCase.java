@@ -68,7 +68,16 @@ public class TestCase {
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
-
+    
+    try {
+        Hello myObject;
+        System.out.println("checking s4.b151816.Hello");
+        myObject = new s4.b151816.Hello();
+        myObject.main();
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
     }
 }	    
 	    
