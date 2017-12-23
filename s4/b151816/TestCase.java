@@ -38,9 +38,15 @@ public class TestCase {
 	    myObject = new s4.b151816.Frequencer();
 	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    myObject.setTarget("H".getBytes());
-	    freq = myObject.frequency();
-	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
-	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+        freq = myObject.frequency();
+        if(freq==-1 || freq==0){
+            if(freq==-1) System.out.println("The length of Target is 0.");
+            else System.out.println("The length of Space is 0.");
+        }
+        else{
+            System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
+            if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+        }
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
@@ -52,32 +58,52 @@ public class TestCase {
 	    System.out.println("checking s4.b151816.InformationEstimator");
 	    myObject = new s4.b151816.InformationEstimator();
 	    myObject.setSpace("3210321001230123".getBytes());
+        
 	    myObject.setTarget("0".getBytes());
 	    value = myObject.estimation();
-	    System.out.println(">0 "+value);
+        if(value==0.0 || value==Double.MAX_VALUE){
+            if(value==0.0) System.out.println("The TARGET is not set or TARGET's length is zero.");
+            else System.out.println("The true value is infinite or SPACE is not set.");
+        }
+        else System.out.println(">0 "+value);
+        
 	    myObject.setTarget("01".getBytes());
 	    value = myObject.estimation();
-	    System.out.println(">01 "+value);
+        if(value==0.0 || value==Double.MAX_VALUE){
+            if(value==0.0) System.out.println("The TARGET is not set or TARGET's length is zero.");
+            else System.out.println("The true value is infinite or SPACE is not set.");
+        }
+	    else System.out.println(">01 "+value);
+        
 	    myObject.setTarget("0123".getBytes());
 	    value = myObject.estimation();
-	    System.out.println(">0123 "+value);
+        if(value==0.0 || value==Double.MAX_VALUE){
+            if(value==0.0) System.out.println("The TARGET is not set or TARGET's length is zero.");
+            else System.out.println("The true value is infinite or SPACE is not set.");
+        }
+	    else System.out.println(">0123 "+value);
+        
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
-	    System.out.println(">00 "+value);
+        if(value==0.0 || value==Double.MAX_VALUE){
+            if(value==0.0) System.out.println("The TARGET is not set or TARGET's length is zero.");
+            else System.out.println("The true value is infinite or SPACE is not set.");
+        }
+	    else System.out.println(">00 "+value);
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
     
-    try {
-        Hello myObject;
-        System.out.println("checking s4.b151816.Hello");
-        myObject = new s4.b151816.Hello();
-        myObject.main();
-    }
-    catch(Exception e) {
-        System.out.println("Exception occurred: STOP");
-    }
+    //try {
+    //    Hello myObject;
+    //    System.out.println("checking s4.b151816.Hello");
+    //    myObject = new s4.b151816.Hello();
+    //    myObject.main();
+    //}
+    //catch(Exception e) {
+    //    System.out.println("Exception occurred: STOP");
+    //}
     }
 }	    
 	    

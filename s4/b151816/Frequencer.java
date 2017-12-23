@@ -25,14 +25,20 @@ public class Frequencer implements FrequencerInterface{
 	int targetLength = myTarget.length;
 	int spaceLength = mySpace.length;
 	int count = 0;
-	for(int start = 0; start<spaceLength; start++) { // Is it OK?
-	    boolean abort = false;
-	    for(int i = 0; i<targetLength; i++) {
-		if(myTarget[i] != mySpace[start+i]) { abort = true; break; }
-	    }
-	    if(abort == false) { count++; }
-	}
-	return count;
+    if(targetLength == 0 || spaceLength == 0){
+        if(targetLength == 0) return -1;
+        else return 0;
+    }
+    else{
+        for(int start = 0; start<spaceLength; start++) { // Is it OK?
+            boolean abort = false;
+            for(int i = 0; i<targetLength; i++) {
+                if(myTarget[i] != mySpace[start+i]) { abort = true; break; }
+            }
+            if(abort == false) { count++; }
+        }
+        return count;
+    }
     }
 
     // I know that here is a potential problem in the declaration.
