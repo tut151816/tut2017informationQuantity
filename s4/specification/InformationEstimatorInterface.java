@@ -26,5 +26,6 @@ public interface InformationEstimatorInterface {
      * Otherwise, it returns the estimation of information quantity.
      */
     double estimation();
+    
 }
 

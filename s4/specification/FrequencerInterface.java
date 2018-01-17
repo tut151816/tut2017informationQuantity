@@ -30,12 +30,13 @@ public interface FrequencerInterface {
     /**
      * Get the frequency of subBytes of TARGET.
      *
-     * i.e. target[start], taget[start+1], ... , target[end-1].
+     * i.e. target[start], target[start+1], ... , target[end-1].
      * For the incorrect value of START or END, the behavior is undefined.
      *
      * @param start
      * @param end
      */
     int subByteFrequency(int start, int end);
+    
 }
 
