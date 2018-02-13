@@ -1,6 +1,6 @@
-//package s4.sample2; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
-//import java.lang.*;
-//import s4.specification.*;
+package s4.b151816; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
+import java.lang.*;
+import s4.specification.*;
 
 // What is imported from s4.specification
 //package s4.specification;

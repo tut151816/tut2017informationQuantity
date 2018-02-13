@@ -1,6 +1,6 @@
-//package s4.b151816; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
-//import java.lang.*;
-//import s4.specification.*;
+package s4.b151816; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
+import java.lang.*;
+import s4.specification.*;
 
 
 interface FrequencerInterface {     // This interface provides the design for frequency counter.
@@ -81,7 +81,7 @@ public class Frequencer implements FrequencerInterface{
     	}
     	*/
     	suffixQuickSort(suffixArray,0,suffixArray.length-1);
-    	printSuffixArray();
+    	//printSuffixArray();
     }
 
     public void suffixQuickSort(int[] array, int left, int right){
@@ -193,10 +193,10 @@ public class Frequencer implements FrequencerInterface{
     	int first = subByteStartIndex(start,end);
     	int last1 = subByteEndIndex(start,end);
     	//inspection code
-    	for(int k=start;k<end;k++) {
-            System.out.write(myTarget[k]);
-        }
-    	System.out.printf(": first=%d last1=%d\n", first, last1);
+    	//for(int k=start;k<end;k++) {
+        //    System.out.write(myTarget[k]);
+        //}
+    	//System.out.printf(": first=%d last1=%d\n", first, last1);
     	return last1 - first;
     }
 
