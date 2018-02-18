@@ -80,56 +80,106 @@ public class Frequencer implements FrequencerInterface{
     		}
     	}
     	*/
+        //mergeSort(suffixArray,0,suffixArray.length-1);
     	suffixQuickSort(suffixArray,0,suffixArray.length-1);
     	//printSuffixArray();
     }
-
+    
     public void suffixQuickSort(int[] array, int left, int right){
-    	int curleft=left;
-    	int curright=right;
-    	int pivot=(curleft+curright)/2;
-
-    	do{
-    		while(suffixCompare(curleft,pivot)==-1) curleft++;
-    		while(suffixCompare(curright,pivot)==1) curright--;
-    		if(curleft<=curright){
-    			int tmp=array[curleft];
-    			array[curleft]=array[curright];
-    			array[curright]=tmp;
-    			curleft++;
-    			curright--;
-    		}
-    	}while(curleft<=curright);
-
-    	if(left<curright) suffixQuickSort(array,left,curright);
-    	if(curleft<right) suffixQuickSort(array,curleft,right);
-
+        int curleft=left;
+        int curright=right;
+        //int pivot=(curleft+curright)/2;
+        int pivot=curleft; /* pivotは左端でないといけない。→真ん中にすると正しく動作しない。 */
+        
+        do{
+            while(suffixCompare(curleft,pivot)==-1){
+                curleft++;
+                //printSuffixArray();
+                //System.out.println("");
+            }
+            while(suffixCompare(curright,pivot)==1){
+                curright--;
+                //printSuffixArray();
+                //System.out.println("");
+            }
+            
+            if(curleft<=curright){
+                int tmp=array[curleft];
+                array[curleft]=array[curright];
+                array[curright]=tmp;
+                curleft++;
+                curright--;
+            }
+            
+        }while(curleft<=curright);
+        
+        if(left<curright) suffixQuickSort(array,left,curright);
+        if(curleft<right) suffixQuickSort(array,curleft,right);
     }
 
     /*
-    public void suffixQuickSort(int[] array, int left, int right){
-    	int curleft=left;
-    	int curright=right;
-    	int pivot=(curleft+curright)/2;
-
-    	do{
-    		while(presuffixCompare[curleft][pivot]==-1) curleft++;
-    		while(presuffixCompare[curright][pivot]==1) curright--;
-    		if(curleft<=curright){
-    			int tmp=array[curleft];
-    			array[curleft]=array[curright];
-    			array[curright]=tmp;
-    			curleft++;
-    			curright--;
-    		}
-    	}while(curleft<=curright);
-
-    	if(left<curright) suffixQuickSort(array,left,curright);
-    	if(curleft<right) suffixQuickSort(array,curleft,right);
-
+     public void suffixQuickSort(int[] array, int left, int right){
+     int curleft=left;
+     int curright=right;
+     int pivot=(curleft+curright)/2;
+     
+     do{
+     while(presuffixCompare[curleft][pivot]==-1) curleft++;
+     while(presuffixCompare[curright][pivot]==1) curright--;
+     if(curleft<=curright){
+     int tmp=array[curleft];
+     array[curleft]=array[curright];
+     array[curright]=tmp;
+     curleft++;
+     curright--;
+     }
+     }while(curleft<=curright);
+     
+     if(left<curright) suffixQuickSort(array,left,curright);
+     if(curleft<right) suffixQuickSort(array,curleft,right);
+     
+     }
+     */
+    
+    /*
+    void mergeSort(int[] array, int low, int high){
+        if(low < high){
+            int middle = (low + high) / 2;
+            mergeSort(array, low, middle);
+            mergeSort(array, middle+1, high);
+            merge(array, low, middle, high);
+        }
+    }
+    
+    void merge(int[] array, int low, int middle, int high){
+        int[] helper = new int[array.length];
+        for (int i = low; i <= high; i++) {
+            helper[i] = array[i];
+        }
+        
+        int helperLeft = low;
+        int helperRight = middle+1;
+        int current = low;
+        
+        while (helperLeft <= middle && helperRight <=high) {
+            if(suffixCompare(helperLeft,helperRight)==-1 || suffixCompare(helperLeft,helperRight)==0){
+                array[current] = helper[helperLeft];
+                helperLeft++;
+                
+            }else{
+                array[current] = helper[helperRight];
+                helperRight++;
+            }
+            current ++;
+        }
+        
+        int remaining = middle - helperLeft;
+        for (int i = 0; i <= remaining; i++) {
+            array[current+i] = helper[helperLeft+ i];
+        }
     }
     */
-
+    
     private int suffixCompare(int i, int j) {
         // comparing two suffixes by dictionary order.
         // i and j denoetes suffix_i, and suffix_j
