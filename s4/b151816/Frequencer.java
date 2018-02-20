@@ -2,18 +2,16 @@ package s4.b151816; // Please modify to s4.Bnnnnnn, where nnnnnn is your student
 import java.lang.*;
 import s4.specification.*;
 
-
-interface FrequencerInterface {     // This interface provides the design for frequency counter.
-    void setTarget(byte[]  target); // set the data to search.
-    void setSpace(byte[]  space);  // set the data to be searched target from.
-    int frequency(); //It return -1, when TARGET is not set or TARGET's length is zero
+//interface FrequencerInterface {     // This interface provides the design for frequency counter.
+ //   void setTarget(byte[]  target); // set the data to search.
+  //  void setSpace(byte[]  space);  // set the data to be searched target from.
+   // int frequency(); //It return -1, when TARGET is not set or TARGET's length is zero
                     //Otherwise, it return 0, when SPACE is not set or Space's length is zero
                     //Otherwise, get the frequency of TARGET in SPACE
-    int subByteFrequency(int start, int end);
+   // int subByteFrequency(int start, int end);
     // get the frequency of subByte of target, i.e target[start], target[start+1], ... , target[end-1].
     // For the incorrect value of START or END, the behavior is undefined.
-}
-
+//}
 
 public class Frequencer implements FrequencerInterface{
     // Code to Test, *warning: This code  contains intentional problem*
@@ -24,7 +22,8 @@ public class Frequencer implements FrequencerInterface{
     boolean spaceReady = false;
 
     int [] suffixArray;
-    // int [][] presuffixCompare;
+    //int [][] presuffixCompare;
+    //int count=0;
 
     /* 前処理：O(N*log(N)) */
     public void setTarget(byte [] target) {
@@ -72,26 +71,30 @@ public class Frequencer implements FrequencerInterface{
     		if(f==true)break;	//一度も入れ替わらなかったらソート終了 → if文内breakによって外側for文脱出
     	}
     	*/
-    	/*
-    	presuffixCompare=new int[suffixArray.length][suffixArray.length];
-    	for(int i=0;i<suffixArray.length;i++){
-    		for(int j=0;j<suffixArray.length;j++){
-    			presuffixCompare[i][j]=suffixCompare(i,j);
-    		}
-    	}
-    	*/
+    	
+    	//presuffixCompare=new int[suffixArray.length][suffixArray.length];
+    	//for(int i=0;i<suffixArray.length;i++){
+    	//	for(int j=0;j<suffixArray.length;j++){
+    	//		presuffixCompare[i][j]=suffixCompare(i,j);
+    	//	}
+    	//}
+
         //mergeSort(suffixArray,0,suffixArray.length-1);
     	suffixQuickSort(suffixArray,0,suffixArray.length-1);
     	//printSuffixArray();
     }
-    
+
     public void suffixQuickSort(int[] array, int left, int right){
+        //count++;
+        //System.out.println(count);
         int curleft=left;
         int curright=right;
         //int pivot=(curleft+curright)/2;
-        int pivot=curleft; /* pivotは左端でないといけない。→真ん中にすると正しく動作しない。 */
-        
-        do{
+        int pivot=curright; /* pivotは左端(右端)でないといけない。→真ん中にすると正しく動作しない。
+                                                            →左端・右端で再帰の回数は同じ
+                                                            →おそらくクイックソートの最良・平均実行時間O(n*log(n))で実行できている。*/
+
+       do{
             while(suffixCompare(curleft,pivot)==-1){
                 curleft++;
                 //printSuffixArray();
@@ -116,30 +119,30 @@ public class Frequencer implements FrequencerInterface{
         if(left<curright) suffixQuickSort(array,left,curright);
         if(curleft<right) suffixQuickSort(array,curleft,right);
     }
-
-    /*
+    
+   /*
      public void suffixQuickSort(int[] array, int left, int right){
-     int curleft=left;
-     int curright=right;
-     int pivot=(curleft+curright)/2;
+         int curleft=left;
+         int curright=right;
+         int pivot=curleft;
      
-     do{
-     while(presuffixCompare[curleft][pivot]==-1) curleft++;
-     while(presuffixCompare[curright][pivot]==1) curright--;
-     if(curleft<=curright){
-     int tmp=array[curleft];
-     array[curleft]=array[curright];
-     array[curright]=tmp;
-     curleft++;
-     curright--;
+         do{
+             while(presuffixCompare[curleft][pivot]==-1) curleft++;
+             while(presuffixCompare[curright][pivot]==1) curright--;
+             if(curleft<=curright){
+                 int tmp=array[curleft];
+                 array[curleft]=array[curright];
+                 array[curright]=tmp;
+                 curleft++;
+                 curright--;
+             }
+         }while(curleft<=curright);
+     
+         if(left<curright) suffixQuickSort(array,left,curright);
+         if(curleft<right) suffixQuickSort(array,curleft,right);
+     
      }
-     }while(curleft<=curright);
-     
-     if(left<curright) suffixQuickSort(array,left,curright);
-     if(curleft<right) suffixQuickSort(array,curleft,right);
-     
-     }
-     */
+    */
     
     /*
     void mergeSort(int[] array, int low, int high){

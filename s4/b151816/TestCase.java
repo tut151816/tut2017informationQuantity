@@ -31,6 +31,7 @@ public interface InformationEstimatorInterface{
 
 public class TestCase {
     public static void main(String[] args) {
+    //long start = System.currentTimeMillis();
 	try {
 	    FrequencerInterface  myObject;
 	    int freq;
@@ -68,7 +69,8 @@ public class TestCase {
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
-
+        //long end = System.currentTimeMillis();
+        //System.out.println((end - start)  + "ms");
     }
 }	    
 	    
